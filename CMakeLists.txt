@@ -11,6 +11,7 @@ if (BUILD_PYTHON)
 endif()
 
 add_subdirectory("linked_list")
+add_subdirectory("convex_hull")
 
 
 ## Setup testing
