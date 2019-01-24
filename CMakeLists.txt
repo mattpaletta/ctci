@@ -12,7 +12,7 @@ endif()
 
 add_subdirectory("linked_list")
 add_subdirectory("convex_hull")
-
+add_subdirectory("binary_tree")
 
 ## Setup testing
 #include(cmake/googletest.cmake)

@@ -35,6 +35,10 @@ add_custom_target(install-python
         DEPENDS LinkedList
         COMMAND python ${SETUP_PY_OUT} install)
 
+#add_custom_target(build-python
+#        DEPENDS LinkedList
+#        COMMAND python ${SETUP_PY_OUT} build)
+
 add_custom_target(build-python
         DEPENDS LinkedList
-        COMMAND python ${SETUP_PY_OUT} build)
+        COMMAND python3 ${SETUP_PY_OUT}  sdist bdist_wheel)

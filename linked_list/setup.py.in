@@ -27,7 +27,7 @@ if __name__ == '__main__':
     setuptools.setup(
         name='swig_example',
         version='1.0.0-dev',
-        packages=['swig_example'],
+        packages=[],
         license='Apache License 2.0',
         author='Daniel Underwood',
         author_email='daniel.underwood13@gmail.com',
