@@ -8,6 +8,9 @@
 #include <string>
 #include <vector>
 #include <stdlib.h>     /* strtol */
+#include <cstdlib>
+#include <ctime>
+#include <iostream>
 
 typedef struct {
     int x;
@@ -50,6 +53,18 @@ std::vector<std::vector<point>> extract_points_from_file(const std::string &file
     }
 
     return all_examples;
+}
+
+int intRand() {
+    return rand() * RAND_MAX + 1;
+}
+
+std::vector<point> generateRand(int size) {
+    std::vector<point> output = {};
+    for (int i=0; i < size; i++) {
+        output.push_back({intRand(), intRand()});
+    }
+    return output;
 }
 
 point operator-(const point &A, const point &B) {
@@ -203,19 +218,38 @@ std::vector<point> extend(const point u, const point v, const std::vector<point>
     return [v] + extend(u, v, left) + [u] + extend(v, u, right) + [v]
  */
 
-void compute_convex_hull(const std::string &filepath) {
-    auto points = extract_points_from_file(filepath);
-
-    point u = min(points, [](point p) {
-        return p.x;
-    });
-
-    point v = max(points, [](point p) {
-        return p.x;
-    });
+std::vector<point> compute_convex_hulls(const std::vector<point> &points) {
+    point u = min(points, [](point p) { return p.x; });
+    point v = max(points, [](point p) { return p.x; });
 
     auto left = split(u, v, points);
     auto right = split(v, u, points);
 
     return v + extend(u, v, left) + u + extend(v, u, right) + v;
+}
+
+void convex_hulls(const std::string &filepath) {
+    auto examples = extract_points_from_file(filepath);
+    for (const auto &points : examples) {
+        std::vector<point> result = compute_convex_hulls(points);
+
+        std::cout << "Printing next example: " << std::endl;
+        for (const auto &point : result) {
+            std::cout << point.x << ' ' << point.y << std::endl;
+        }
+    }
+}
+
+int main() {
+    convex_hulls("example.txt");
+
+    auto random_points = generateRand(5);
+    std::vector<point> result = compute_convex_hulls(random_points);
+
+    std::cout << "Printing next example: " << std::endl;
+    for (const auto &point : result) {
+        std::cout << point.x << ' ' << point.y << std::endl;
+    }
+
+    return 0;
 }

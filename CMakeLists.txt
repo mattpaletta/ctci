@@ -13,7 +13,7 @@ endif()
 add_subdirectory("linked_list")
 add_subdirectory("convex_hull")
 add_subdirectory("binary_tree")
-
+add_subdirectory("tower_of_hanoi")
 ## Setup testing
 #include(cmake/googletest.cmake)
 #fetch_googletest(
