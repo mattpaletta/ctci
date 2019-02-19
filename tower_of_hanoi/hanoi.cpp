@@ -34,8 +34,18 @@ std::vector<int> hanoi(int n, std::vector<int> &source, std::vector<int> &helper
     return target;
 }
 
+std::vector<int> range(unsigned long max) {
+    std::vector<int> AB = {};
+    AB.reserve(max);
+    for (int i = 0; i < max; i++) {
+        AB.push_back(i);
+    }
+
+    return AB;
+}
+
 int main() {
-    std::vector<int> source = {1, 2, 3, 4};
+    std::vector<int> source = range(20);
     std::vector<int> target = {};
     std::vector<int> helper = {};
 
