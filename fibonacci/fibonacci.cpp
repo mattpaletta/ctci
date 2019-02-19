@@ -8,7 +8,7 @@
 #include <chrono>
 #include <unistd.h>
 
-int fibonacci_basic(int n) {
+unsigned long fibonacci_basic(unsigned long n) {
     if (n < 2) {
         return n;
     } else {
@@ -17,10 +17,14 @@ int fibonacci_basic(int n) {
 }
 
 unsigned long finonacci_dynamic(unsigned long n, std::vector<unsigned long> *cache) {
-    if (n < 2 && n >= cache->size()) {
-        cache->push_back(n);
-        return n;
-    } else if (n < cache->size()) {
+    if (cache->empty()) {
+        // Prefill the cache
+        cache->push_back(fibonacci_basic(0));
+        cache->push_back(fibonacci_basic(1));
+        cache->push_back(fibonacci_basic(2));
+    }
+
+    if (n < cache->size()) {
         return cache->at(n);
     } else {
         auto n0 = finonacci_dynamic(n - 1, cache) + finonacci_dynamic(n - 2, cache);
@@ -30,7 +34,7 @@ unsigned long finonacci_dynamic(unsigned long n, std::vector<unsigned long> *cac
 }
 
 int main() {
-    int N = 10;
+    unsigned long N = 40;
 
     std::cout << "Running basic" << std::endl;
     auto start = std::chrono::steady_clock::now();
@@ -48,10 +52,10 @@ int main() {
     std::cout << "Elapsed time in milliseconds : "
               << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()
               << " ms" << std::endl;
-    if ((unsigned long) n1 == n2) {
-        std::cout << "Result is: %i" << n1 << std::endl;
+    if (n1 == n2) {
+        std::cout << "Result is: " << n1 << std::endl;
     } else {
-        std::cout << "Results do not match %i" << n1 << ", %i" << n2 <<  std::endl;
+        std::cout << "Results do not match " << n1 << ", " << n2 <<  std::endl;
     }
 
     return 0;
