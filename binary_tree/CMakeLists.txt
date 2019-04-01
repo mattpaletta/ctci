@@ -1,1 +1,1 @@
-add_library("binary_tree" BTreeNode BTree)
+add_executable("binary_tree" main BTree BTreeNode)

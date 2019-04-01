@@ -4,14 +4,8 @@
 
 #include "BTree.h"
 
-
 template<class T>
-BTree<T>::BTree() {
-    this->head = nullptr;
-}
-
-template<class T>
-void BTree<T>::insert(BTreeNode<T> *node) {
+constexpr void BTree<T>::insert(BTreeNode<T> *node) {
     if (this->head == nullptr) {
         // We have an empty tree
         this->head = node;
@@ -23,7 +17,7 @@ void BTree<T>::insert(BTreeNode<T> *node) {
 
 
 template<class T>
-void BTree<T>::insert(BTreeNode<T> *root, BTreeNode<T> *node) {
+constexpr void BTree<T>::insert(BTreeNode<T> *root, BTreeNode<T> *node) {
     // We have at least one node, we continue the search from 'root'
     if (root->value <= node->value && root->lChild != nullptr) {
         // It's a smaller value, so we go left
@@ -44,7 +38,7 @@ void BTree<T>::insert(BTreeNode<T> *root, BTreeNode<T> *node) {
 }
 
 template<class T>
-bool BTree<T>::exists(BTreeNode<T> *node) {
+constexpr bool BTree<T>::exists(BTreeNode<T> *node) {
     if (this->head == nullptr) {
         // We have an empty tree
         return false;
@@ -56,7 +50,7 @@ bool BTree<T>::exists(BTreeNode<T> *node) {
 
 
 template<class T>
-bool BTree<T>::exists(BTreeNode<T> *root, BTreeNode<T> *node) {
+constexpr bool BTree<T>::exists(BTreeNode<T> *root, BTreeNode<T> *node) {
 
     if (root->value == node->value) {
         // It's a smaller value, so we go left
@@ -85,14 +79,14 @@ bool BTree<T>::exists(BTreeNode<T> *root, BTreeNode<T> *node) {
 
 
 template<class T>
-void BTree<T>::remove(BTreeNode<T> *node) {
+constexpr void BTree<T>::remove(BTreeNode<T> *node) {
     if (this->head != nullptr) {
         this->remove(this->head, node);
     }
 }
 
 template<class T>
-BTreeNode<T>* BTree<T>::remove(BTreeNode<T> *root, BTreeNode<T> *node) {
+constexpr BTreeNode<T>* BTree<T>::remove(BTreeNode<T> *root, BTreeNode<T> *node) {
     if (root->value == node->value) {
         // We found the value, so we remove it.
 

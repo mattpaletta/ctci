@@ -13,8 +13,8 @@ private:
     BTreeNode* rChild;
 
 public:
-    BTreeNode(T value);
-    BTreeNode(T value, BTreeNode lChild, BTreeNode rChild);
+    constexpr BTreeNode(T value);
+    constexpr BTreeNode(T value, BTreeNode lChild, BTreeNode rChild);
 
     ~BTreeNode();
 };

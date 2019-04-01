@@ -10,19 +10,23 @@
 template<class T>
 class BTree {
 private:
-    BTreeNode<T>* head;
-    void insert(BTreeNode<T>* root, BTreeNode<T>* node);
-    bool exists(BTreeNode<T>* root, BTreeNode<T>* node);
-    BTreeNode<T>* remove(BTreeNode<T>* root, BTreeNode<T>* node);
+    const BTreeNode<T>* head;
+    constexpr void insert(BTreeNode<T>* root, BTreeNode<T>* node);
+    constexpr bool exists(BTreeNode<T>* root, BTreeNode<T>* node);
+    constexpr BTreeNode<T>* remove(BTreeNode<T>* root, BTreeNode<T>* node);
 
 public:
-    BTree();
+    constexpr BTree(BTreeNode<T>* head);
 
-    void insert(BTreeNode<T>* node);
-    bool exists(BTreeNode<T>* node);
-    void remove(BTreeNode<T>* node);
+    constexpr void insert(BTreeNode<T>* node);
+    constexpr bool exists(BTreeNode<T>* node);
+    constexpr void remove(BTreeNode<T>* node);
 };
 
+template<class T>
+constexpr BTree<T>::BTree(BTreeNode<T>* head) {
+    this->head = head;
+}
 
 
 #endif //CTCI_RBTREE_H

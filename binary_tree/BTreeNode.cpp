@@ -5,14 +5,14 @@
 #include "BTreeNode.h"
 
 template<class T>
-BTreeNode<T>::BTreeNode(T value) {
+constexpr BTreeNode<T>::BTreeNode(T value) {
     this->value = value;
     this->lChild = nullptr;
     this->rChild = nullptr;
 }
 
 template<class T>
-BTreeNode<T>::BTreeNode(T value, BTreeNode lChild, BTreeNode rChild) {
+constexpr BTreeNode<T>::BTreeNode(T value, BTreeNode lChild, BTreeNode rChild) {
     this->value = value;
     this->lChild = lChild;
     this->rChild = rChild;
